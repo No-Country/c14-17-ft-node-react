@@ -1,4 +1,4 @@
-const { getCardsByUserIdController } = require("../controllers/cardControllers/getCardsByUserIdController")
+const { getCardsByUserIdController } = require("../controllers/cardControllers")
 
 const getCardsByUserIdHandler = async (req,res) => {
     try {
