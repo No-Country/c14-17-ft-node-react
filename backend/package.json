@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "db:import": "node ./seed/seeder.js -i"
   },
-
   "author": "Not Country",
   "license": "ISC",
   "dependencies": {
@@ -21,6 +19,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.1",
+    "nodemailer": "^6.9.6",
     "nodemon": "^3.0.1",
     "sequelize": "^6.33.0"
   }

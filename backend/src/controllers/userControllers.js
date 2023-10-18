@@ -6,30 +6,32 @@ const secretKey = process.env.SECRET_KEY
 
 const getUserByIdController = async () => {
     const users = await User.findAll()
-    console.log(users);
     return users
 }
 
 const postUserController = async (name,password,email) =>{
-    console.log(password,name,email);
     const hashPassword = await encrypt(password)
+
     const newUser = User.create({
         name,
         email,
         password: hashPassword
     })
+
     return newUser
 }
+
 const loginController = async (email,password) => {
     const user = await User.findOne({
         where:{
-            email:email
+            email
         }
     })
 
     if (!user) {
         return "Usuario invalido"
     }
+
     const checkPassword = await compare(password,user.password);
 
     if (checkPassword) {
@@ -48,4 +50,40 @@ const loginController = async (email,password) => {
         }
     }
 }
-module.exports ={getUserByIdController,postUserController,loginController}
+
+const forgotPasswordController = async (email)=>{
+    const user = await User.findOne({
+         where: {
+            email 
+        } 
+    });
+
+    if (!user) {
+        return { 
+            error: 'No se encontró un usuario con este correo electrónico.'
+        };
+    }
+
+    const token = jwt.sign({ userId: user.id, email }, secretKey, { expiresIn: '1h' });
+    return token
+}
+
+const resetPasswordController = async (newPassword,token) => {
+    const decodedToken = jwt.verify(token, secretKey);
+    const user = await User.findOne({
+        where: { 
+            id: decodedToken.userId 
+        } 
+    });
+
+    if (!user) {
+        return { error: 'Usuario no encontrado.' }
+    }
+    
+    const hashPassword = await encrypt(newPassword);
+    user.password = hashPassword;
+    await user.save();
+    return { message: 'Contraseña restablecida con éxito.' }
+
+}
+module.exports ={getUserByIdController,postUserController,loginController,forgotPasswordController,resetPasswordController}

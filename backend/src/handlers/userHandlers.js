@@ -1,4 +1,5 @@
-const {getUserByIdController,postUserController, loginController} = require('../controllers/userControllers')
+const {getUserByIdController,postUserController, loginController,forgotPasswordController,resetPasswordController} = require('../controllers/userControllers');
+const { sendWelcomeEmail, sendPasswordResetEmail } = require('../helpers/nodemailer');
 
 const getUserByIdHandler = async (req,res) =>{
     try {
@@ -9,15 +10,21 @@ const getUserByIdHandler = async (req,res) =>{
     }
 };
 
-const postUserHandler = async (req,res) =>{
-    const {name,password,email} = req.body
+const postUserHandler = async (req, res) => {
+    const { name, password, email } = req.body;
     try {
-        const newUser = await postUserController(name,password,email)
-        res.status(200).send(newUser)
+        const newUser = await postUserController(name, password, email);
+        sendWelcomeEmail(email); 
+        res.status(200).send(newUser);
     } catch (error) {
-        res.status(400).send({error:error.message})
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            res.status(400).send({ error: 'El correo electrónico ya está en uso.' });
+        } else {
+            res.status(500).send({ error: error.message });
+        }
     }
-}
+};
+
 
 const loginHandler = async (req,res)=>{
     try {
@@ -28,6 +35,24 @@ const loginHandler = async (req,res)=>{
         res.status(400).send({error:error.message})
     }
 }
-
-
-module.exports = {getUserByIdHandler,postUserHandler,loginHandler}
+const forgotPasswordHandler = async (req,res)=>{
+    try {
+        const {email} = req.body
+        console.log(email);
+        const token = await forgotPasswordController(email)
+        sendPasswordResetEmail(email,token)
+        res.status(200).send('correo enviado exitosamente')
+    } catch (error) {
+        res.status(400).send({error:error.message})  
+    }
+}
+const resetPasswordHandler = async (req,res)=>{
+    try {
+        const {newPassword,token} = req.body
+        const response = await resetPasswordController(newPassword,token)
+        res.status(200).send(response)
+    } catch (error) {
+        res.status(400).send({error:error.message})  
+    }
+}
+module.exports = {getUserByIdHandler,postUserHandler,loginHandler,forgotPasswordHandler,resetPasswordHandler}
