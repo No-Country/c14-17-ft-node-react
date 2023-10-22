@@ -17,7 +17,7 @@ const billCategories = [
     { name: "Otros" }
 ]
 
-const earningsCategories = [
+const Categories = [
     { name: "Salario" },
     { name: "Ingresos por negocio" },
     { name: "Alquileres" },
@@ -30,4 +30,4 @@ const earningsCategories = [
 ];
 
 
-module.exports = {billCategories,earningsCategories}
+module.exports = {billCategories,Categories}

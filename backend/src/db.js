@@ -1,13 +1,10 @@
 const {Sequelize} = require('sequelize')
 require('dotenv').config()
 const UserFunction = require('./models/user')
-const CategoryBillFunction = require('./models/categoryBill')
-const CategoryEarningFunction = require('./models/categoryEarning')
-const BillFunction = require('./models/bill')
-const SavingFunction =require('./models/saving')
-const CardFunction = require("./models/card")
 const EarningFunction = require("./models/earning");
-
+const AccountFunction = require("./models/account");
+const CategoryFuntion = require('./models/category');
+const BillFunction = require('./models/bill')
 
 const sequelize = new Sequelize(
     process.env.DB_URI,
@@ -16,33 +13,30 @@ const sequelize = new Sequelize(
 
 //MODELS FUNCTIONS
 UserFunction(sequelize);
-CategoryEarningFunction(sequelize);
-CategoryBillFunction(sequelize);
-BillFunction(sequelize)
-SavingFunction(sequelize)
-CardFunction(sequelize);
 EarningFunction(sequelize);
+AccountFunction(sequelize);
+CategoryFuntion(sequelize);
+BillFunction(sequelize)
 
-const {User,Bill,Earning,CategoryBill,CategoryEarning,Card} = sequelize.models
+const {User,Bill,Earning,Category,Account} = sequelize.models
 
-// ASSOCIATIONS
-User.hasMany(Bill);
-Bill.belongsTo(User);
+//Usuario - categorias
+User.hasMany(Earning)
+Earning.belongsTo(User)
 
-User.hasMany(Card);
-Card.belongsTo(User);
+//Usuario - cuenta
+User.hasMany(Account)
+Account.belongsTo(User)
 
-Card.hasMany(Bill);
-Bill.belongsTo(Card);
+//Usurio - categoria
+User.hasMany(Category)
 
-CategoryEarning.hasMany(Earning);
-Earning.belongsTo(CategoryEarning);
+//Cuenta- ingreso
+Category.hasMany(Earning)
 
-CategoryBill.hasMany(Bill);
-Bill.belongsTo(CategoryBill);
-
-User.hasMany(Earning);
-Earning.belongsTo(User);
+//categoria - gastos
+Category.hasOne(Bill)
+User.hasOne(Bill)
 
 
 module.exports = {

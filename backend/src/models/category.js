@@ -2,17 +2,22 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "CategoryBill",
+    "Category",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
+       
       },
       name: {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      date:{
+        type: DataTypes.DATEONLY,
+        allowNull:true,
+       },
     },
     { timestamps: false }
   );

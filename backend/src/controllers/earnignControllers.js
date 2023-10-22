@@ -1,4 +1,4 @@
-const { Earning, User ,CategoryEarning } = require("./../db.js");
+const { Earning, User ,Category } = require("./../db.js");
 
 
 const getEarningByUserIdController=async(UserId)=>{
@@ -18,18 +18,17 @@ const getEarningByUserIdController=async(UserId)=>{
 
 
 
-const postEarningByUserIdController= async (amount, date, name, CategoryEarningId, UserId)=>{
+const postEarningByUserIdController= async (description, account_type, amount, charged, date,AccountId , CategoryId, UserId)=>{
   // Aca hago las validaciones
-  const earning = await Earning.create({amount, date, name, CategoryEarningId, UserId,include: [{
-    model: CategoryEarning,
+  const earning = await Earning.create({description, account_type, amount, charged, date,AccountId , CategoryId, UserId,include: [{
+    model: Category,
     attributes: ["name"]
   }]});
   return earning;
 
 }
 
-
-const putEarningByUserIdController = async( id, amount, date, name, CategoryEarningId)=>{
+const putEarningByUserIdController = async( id, description, account_type, amount, charged, date,AccountId , CategoryId, UserId)=>{
   const edict_earning = await Earning.findByPk(id);
   console.log(edict_earning);
 
@@ -40,7 +39,7 @@ const putEarningByUserIdController = async( id, amount, date, name, CategoryEarn
     return "Registro vacio"
   }
   //guardar cambios
-  const earning = await Earning.update({amount, date, name, CategoryEarningId}, {where:{id}});
+  const earning = await Earning.update({description, account_type, amount, charged, date,AccountId , CategoryId, UserId}, {where:{id}});
   return earning
 }
 

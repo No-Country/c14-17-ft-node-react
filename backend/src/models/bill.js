@@ -9,27 +9,26 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        description : {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
         amount:{
           type: DataTypes.INTEGER,
           allowNull: true,
-
         },
        frequency:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
-       },
-       data:{
-        type: DataTypes.DATEONLY,
-        allowNull:true,
-       },
-       name:{
-        type:DataTypes.STRING,
-        allowNull:true,
        },
        payment_method:{
         type: DataTypes.BOOLEAN,
         allowNull:true,
-       }
+       },
+       date:{
+        type: DataTypes.DATEONLY,
+        allowNull:true,
+       },
     },
     { timestamps: false }
   );
