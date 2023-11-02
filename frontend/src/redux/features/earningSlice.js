@@ -30,7 +30,7 @@ export const { setEarningGlobal, setCategoryGlobal, setChangeErrorStatus } =
 export const getAllEarning = (id) => (dispatch) => {
   axiosMiFinanz
     .get(`/earning/${id}`)
-    .then((res) => dispatch(setEarningGlobal(res.data.results)))
+    .then((res) => dispatch(setEarningGlobal(res.data)))
     .catch((err) => console.log(err));
 };
 
@@ -42,6 +42,45 @@ export const addEarning = (id, data) => (dispatch) => {
     .then((res) => dispatch(getAllEarning())) // después de crear el earning mandamos actualizamos los earning del usuario
 
     .catch((err) => console.log(err));
+};
+
+export const deleteEarning = (id, userId) => (dispatch) => {
+  axiosMiFinanz
+    .delete(`/earning/${id}`)
+    .then((res) => {
+      if (res.status === 204) {
+        // Eliminación exitosa, obtener de nuevo la lista de ingresos
+        dispatch(getAllEarning(userId));
+      } else {
+        console.log(
+          "Error al eliminar el ingreso. Código de estado:",
+          res.status
+        );
+      }
+    })
+    .catch((err) => console.log("Error al eliminar el ingreso:", err));
+};
+
+export const updateEarning = (id, data, userId) => (dispatch) => {
+  // console.log("id recibido", id);
+  axiosMiFinanz
+    .put(`/earning//${id}`, data)
+    .then((res) => {
+      if (res.status === 200) {
+        // actualización exitosa, obtener de nuevo la lista de gastos
+        dispatch(getAllEarning(userId));
+        // console.log("id enviado a getAllBill", userId);
+        // console.log(`gasto actualizado: ${id}`);
+        // console.log("data enviada", data);
+        // console.log("estado que devuelve el back", res.status);
+      } else {
+        console.log(
+          "Error al actualizar el ingreso. Código de estado:",
+          res.status
+        );
+      }
+    })
+    .catch((err) => console.log("Error al actualizar el ingreso:", err));
 };
 
 //extraer las categorías de earning

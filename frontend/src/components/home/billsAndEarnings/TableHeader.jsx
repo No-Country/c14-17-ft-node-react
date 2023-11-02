@@ -57,7 +57,7 @@ const TableHeader = ({
           >
             <Option value="Todas">Todas</Option>
             {categories.map((category) => (
-              <Option key={category} value={category}>
+              <Option key={category.id} value={category.name}>
                 {category?.name}
               </Option>
             ))}
