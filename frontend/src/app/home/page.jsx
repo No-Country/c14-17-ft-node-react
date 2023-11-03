@@ -51,7 +51,7 @@ const AppHome = () => {
     case "exception":
       return (
         <div className="w-full ">
-          <h1>Bienvenido al Sistema</h1>
+          <Dashboard />
         </div>
       );
     default:

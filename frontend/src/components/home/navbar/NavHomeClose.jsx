@@ -13,7 +13,7 @@ import logo from "@/assets/shared/logo.png";
 
 export default function NavHomeClose({ handleSetSection, setOpen }) {
   return (
-    <section className=" flex flex-col  h-[52rem] mt-4 bg-black w-20 text-white rounded-xl ml-2 py-5 justify-between">
+    <section className="lg:flex  flex-col   h-[52rem] mt-4 bg-black w-20 text-white rounded-xl ml-2 py-5 hidden justify-between">
       <div className="flex justify-center items-center">
         <Image src={logo} width={35} height={35} alt="logo.png" />
       </div>

@@ -7,7 +7,9 @@ const getEarningByUserIdController=async(UserId)=>{
    if (!user) {
     return "Usuario no exite"
    }
-    const earnings = await Earning.findAll({where: {UserId}});
+   const earnings = await Earning.findAll({where: {UserId}, include: [
+    { model: CategoryEarning}
+  ],});
     if (earnings.length == 0) {
     return "El usuario no tiene Ingreso"
     }

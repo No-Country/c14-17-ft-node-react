@@ -27,46 +27,56 @@ export default function NavHome() {
       {!open ? (
         <NavHomeClose handleSetSection={handleSetSection} setOpen={setOpen} />
       ) : (
-        <div className=" lg:flex mt-5 bg-black relative flex-col transition-all duration-100 rounded-xl hidden ml-2 p-3 ">
+        <div className=" lg:flex mt-5 lg:h-[36rem] 2xl:h-[50rem] xl:h-[40rem] bg-black relative flex-col transition-all duration-100 rounded-xl hidden ml-2 p-3 ">
           <div className="text-white">
             <div className="flex p-10 gap-2 place-items-center text-xl">
               <Image src={logo} width={30} height={30} alt="logo.png" />
               <h2 className="">miFinanz</h2>
             </div>
-            <div className="p-10 flex flex-col xl:gap-5 md:gap-5 2xl:gap-10">
-              <div className="flex gap-2 text-xl place-items-center cursor-pointer">
+            <div className="xl:p-10 lg:p-5 flex flex-col xl:gap-4 md:gap-5 2xl:gap-10">
+              <div
+                onClick={() => handleSetSection("dashboard")}
+                className="flex gap-2 text-xl place-items-center cursor-pointer"
+              >
                 <VscGraph />
-                <p onClick={() => handleSetSection("dashboard")}> Dashboard</p>
+                <p>Panel</p>
               </div>
-              <div className="flex gap-2 text-xl place-items-center cursor-pointer">
+              <div
+                onClick={() => handleSetSection("cards")}
+                className="flex gap-2 text-xl place-items-center cursor-pointer"
+              >
                 <BiSolidFolder />
-                <p onClick={() => handleSetSection("cards")}>Tarjetas</p>
+                <p>Tarjetas</p>
               </div>
-              <div className="flex gap-2 text-xl place-items-center cursor-pointer">
+              <div
+                onClick={() => handleSetSection("bills")}
+                className="flex gap-2 text-xl place-items-center cursor-pointer"
+              >
                 <BiWindowOpen />
-                <p onClick={() => handleSetSection("bills")}>Gastos</p>
+                <p>Gastos</p>
               </div>
-              <div className="flex gap-2 text-xl place-items-center cursor-pointer">
+              <div
+                onClick={() => handleSetSection("earnings")}
+                className="flex gap-2 text-xl place-items-center cursor-pointer"
+              >
                 <BiImport />
-                <p onClick={() => handleSetSection("earnings")}>Ingresos</p>
+                <p>Ingresos</p>
               </div>
             </div>
-            <div
-              className={`${
-                !open && "hidden"
-              } bg-gray-300 xl:w-48 xl:h-60 2xl:h-72  md:h-52 rounded-2xl m-5 flex flex-col  text-gray-600`}
-            >
-              <div className="flex flex-col gap-4 justify-center items-center text-center">
-                <GoEye className="text-8xl" />
-                <p className="text-black">Conoce toda las herramientas</p>
-                <button className="border border-blue-400	w-32 h-14 text-blue-400 rounded-xl">
+            <div className="bg-gray-300 xl:w-48 xl:h-52 2xl:h-72 xl md:h-52 rounded-2xl m-5 flex flex-col  text-gray-600 lg:h-[10rem]">
+              <div className="flex flex-col gap-4 justify-center items-center text-center ">
+                <GoEye className="2xl:text-8xl xl:text-7xl lg:text-6xl " />
+                <p className="text-black xl:text-lg lg:text-sm">
+                  Conoce toda las herramientas
+                </p>
+                <button className="border border-blue-400	w-32 xl:text-lg lg:h-8 xl:w-28  xl:h-14 lg:w-24 h-14 text-blue-400 rounded-xl lg:text-sm">
                   TUTORIAL
                 </button>
               </div>
             </div>
             <div className="flex flex-col items-end relative">
               <i
-                className="text-3xl cursor-pointer  h-7 w-7"
+                className="text-3xl cursor-pointer   h-7 w-7"
                 onClick={() => setOpen(false)}
               >
                 <BsFillArrowLeftCircleFill />
@@ -75,7 +85,7 @@ export default function NavHome() {
           </div>
         </div>
       )}
-      <NavHomeMobile/>
+      <NavHomeMobile />
     </section>
   );
 }
