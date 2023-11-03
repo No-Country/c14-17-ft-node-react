@@ -27,7 +27,7 @@ export default function NavHome() {
       {!open ? (
         <NavHomeClose handleSetSection={handleSetSection} setOpen={setOpen} />
       ) : (
-        <div className=" lg:flex mt-5 lg:h-[36rem] 2xl:h-[50rem] xl:h-[40rem] bg-black relative flex-col transition-all duration-100 rounded-xl hidden ml-2 p-3 ">
+        <div className=" lg:flex mt-5 lg:h-[36rem] 2xl:h-[50rem] xl:h-[40rem] dark:bg-mLightGray bg-black relative flex-col transition-all duration-100 rounded-xl hidden ml-2 p-3 ">
           <div className="text-white">
             <div className="flex p-10 gap-2 place-items-center text-xl">
               <Image src={logo} width={30} height={30} alt="logo.png" />
