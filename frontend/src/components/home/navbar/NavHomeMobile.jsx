@@ -4,13 +4,20 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setSection } from "@/redux/features/activeSectionSlice";
 import { BiImport } from "react-icons/bi";
 import { BiSolidFolder } from "react-icons/bi";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { VscGraph } from "react-icons/vsc";
+
+
 
 export default function NavHomeMobile() {
   const dispatch = useAppDispatch();
 
   const handleSetSection = (section) => {
+    dispatch(setSection(section));
+  };
+  const activeSection = useAppSelector(
+    (state) => state?.activeSection?.activeSection || "exception"
+  );
+  const handleClick = (section) => {
     dispatch(setSection(section));
   };
   return (
@@ -21,16 +28,32 @@ export default function NavHomeMobile() {
           className="flex flex-col items-center"
         >
           <VscGraph className="text-xl text-white" />
-          <p className="text-white">Panel</p>
+          <p
+            className={
+              activeSection === "dashboard" || activeSection === "exception"
+                ? "underline underline-offset-2  font-bold"
+                : "hover:text-yellow-50 "
+            }
+          >
+            Panel
+          </p>
         </div>
         <div
           onClick={() => handleSetSection("cards")}
           className="flex flex-col items-center cursor-pointer"
         >
           <BiSolidFolder className="text-xl text-white" />
-          <p className="text-white">Tarjetas</p>
+          <p
+            className={
+              activeSection === "cards"
+                ? "underline underline-offset-2 font-bold"
+                : "hover:text-yellow-50 "
+            }
+          >
+            Tarjetas
+          </p>
         </div>
-        <div className="flex flex-col items-center">
+        <div  onClick={() => handleClick("addTransaction")} className="flex flex-col items-center">
           <div className="bg-blue-500 rounded-full h-10 w-10 flex items-center justify-center">
             <BiPlus className="text-3xl text-white" />
           </div>
@@ -41,14 +64,30 @@ export default function NavHomeMobile() {
           className="flex flex-col items-center cursor-pointer"
         >
           <BiWindowOpen className="text-xl text-white" />
-          <p className="text-white">Gastos</p>
+          <p
+            className={
+              activeSection === "bills"
+                ? "underline underline-offset-2 font-bold"
+                : "hover:text-yellow-50 "
+            }
+          >
+            Gastos
+          </p>
         </div>
         <div
           onClick={() => handleSetSection("earnings")}
           className="flex flex-col items-center cursor-pointer"
         >
           <BiImport className="text-xl text-white" />
-          <p className="text-white">Ingresos</p>
+          <p
+            className={
+              activeSection === "earnings"
+                ? "underline underline-offset-2 font-bold"
+                : "hover:text-yellow-50 "
+            }
+          >
+            Ingresos
+          </p>
         </div>
       </div>
     </section>
