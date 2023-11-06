@@ -7,17 +7,17 @@ Bienvenido a MiFinanzs, tu solución personal de gestión financiera. Este proye
 🏁 El proyecto terminó el 3/11/2023 pero se va seguir escalando en sus funcionalidades y su aspecto visual.
 
 Herramientas utilizadas
-| UX/UI   | FrontEnd | BackEnd   | DataBase | Testind & QA |
+| UX/UI   | FrontEnd | BackEnd   | DataBase | Testing & QA |
 | ------- | ---------| ----------|----------|-----------|
 | Figma   | Next.JS  | Node.js   | MySQL    | Postman   |
 |         | Tailwind | Express.js|          | Jira      |
 |         |JavaScript| JavaScript|          | Qmetry    |
-|         |Redux Toolkit| Sequelize |          | Google sheets|
+|         |Redux Toolkit| Sequelize |       | Google sheets|
 
 
 | Integrantes         | Rol               | Contacto            |
 | ------------------- | ----------------- | ------------------- |
-| Roberta Mendoza     | Tester QA         | [Linkedin](https://www.linkedin.com/in/mrobertamendoza/)   |
+| Roberta Mendoza     | Testing & QA      | [Linkedin](https://www.linkedin.com/in/mrobertamendoza/)   |
 | Josefina Eciolaza   | Backend PM        | [Linkedin](https://www.linkedin.com/in/josefinaeciolaza) |
 | Santiago Rovaletti  | Backend           | [Linkedin](https://www.linkedin.com/in/santiago-rovaletti/)|  
 | Mirgelys Serrano    | Backend           | [Linkedin](https://www.linkedin.com/in/mirgelys-serrano-b232a4106/)|
