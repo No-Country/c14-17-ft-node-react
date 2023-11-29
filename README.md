@@ -7,7 +7,7 @@ Bienvenido a MiFinanzs, tu solución personal de gestión financiera. Este proye
 🏁 El proyecto terminó el 3/11/2023 pero se va seguir escalando en sus funcionalidades y su aspecto visual.
 
 Herramientas utilizadas
-| UX/UI   | FrontEnd | BackEnd   | DataBase | Testind & QA |
+| UX/UI   | FrontEnd | BackEnd   | DataBase | Testing & QA |
 | ------- | ---------| ----------|----------|-----------|
 | Figma   | Next.JS  | Node.js   | MySQL    | Postman   |
 |         | Tailwind | Express.js|          | Jira      |
