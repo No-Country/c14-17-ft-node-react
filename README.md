@@ -2,7 +2,7 @@
 
 Bienvenido a MiFinanzs, tu solución personal de gestión financiera. Este proyecto está diseñado para ayudarte a llevar un control efectivo de tus finanzas personales de una manera sencilla y eficiente.
 
-[MiFinanzs](https://c14-17-ft-node-react.vercel.app/)
+[MiFinanzs]https://mifinanz.vercel.app/
 
 🏁 El proyecto terminó el 3/11/2023 pero se va seguir escalando en sus funcionalidades y su aspecto visual.
 
